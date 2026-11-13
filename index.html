@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwi.2 — Ejercicios de JavaScript</title>
+  <meta name="description" content="Ejercicios de lógica en JavaScript: clima, parqueadero, cuenta regresiva, riwi coder, adivina el número y validador de contraseñas.">
+  <style>
+    :root { --bg:#0f172a; --card:#111c35; --line:#24324f; --txt:#e2e8f0; --muted:#94a3b8; --acc:#facc15; --acc2:#22d3ee; --ok:#34d399; --bad:#f87171; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--txt); line-height:1.5; }
+    .wrap { max-width:1100px; margin:0 auto; padding:2rem 1rem 4rem; }
+    h1 { font-size:clamp(1.8rem,5vw,2.6rem); margin:0 0 .3rem; }
+    h1 span { color:var(--acc); }
+    .intro { color:var(--muted); margin:0 0 2rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.25rem; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.25rem; display:flex; flex-direction:column; gap:.75rem; }
+    .card h2 { margin:0; font-size:1.15rem; display:flex; gap:.6rem; align-items:center; }
+    .num { font-family:ui-monospace,Menlo,monospace; font-size:.8rem; color:#0f172a; background:var(--acc); border-radius:8px; padding:.15rem .45rem; }
+    .card p { margin:0; color:var(--muted); font-size:.92rem; }
+    .card small { color:var(--muted); font-family:ui-monospace,Menlo,monospace; font-size:.75rem; }
+    form { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+    input, select { flex:1 1 140px; min-width:0; font:inherit; font-size:16px; color:var(--txt); background:#0b1222; border:1px solid var(--line); border-radius:10px; padding:.55rem .7rem; }
+    input:focus, select:focus { outline:none; border-color:var(--acc2); }
+    button { font:inherit; font-weight:600; cursor:pointer; border:0; border-radius:10px; padding:.6rem 1rem; background:var(--acc2); color:#0f172a; }
+    button.sec { background:transparent; color:var(--txt); border:1px solid var(--line); }
+    .out { margin:0; min-height:2.6rem; white-space:pre-wrap; background:#0b1222; border:1px solid var(--line); border-radius:10px; padding:.7rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; max-height:220px; overflow:auto; }
+    .ok { color:var(--ok); } .bad { color:var(--bad); }
+    footer { color:var(--muted); font-size:.85rem; text-align:center; margin-top:2rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Riwi<span>.2</span> — Ejercicios de JavaScript</h1>
+    <p class="intro">Los mismos ejercicios del repositorio, ahora para probarlos directo en el navegador. Los archivos <code>.js</code> originales siguen funcionando en la terminal con Node.</p>
+
+    <div class="grid">
+
+      <section class="card">
+        <h2><span class="num">01</span> ¿Qué ropa me pongo?</h2>
+        <p>Escribe la temperatura y te digo qué clima hace.</p>
+        <small>Culaquiercosa.js</small>
+        <form id="f1"><input id="temp" type="text" inputmode="decimal" placeholder="Temperatura (°C)"><button>Evaluar</button></form>
+        <pre class="out" id="o1"></pre>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">02</span> Parqueadero Riwi</h2>
+        <p>Primera hora $3.000, cada hora adicional $2.000, tope de $20.000 y 15% de descuento para coders.</p>
+        <small>Cualquiercosa2.js</small>
+        <form id="f2">
+          <input id="horas" type="number" min="0" step="1" placeholder="Horas">
+          <select id="coder"><option value="Sí">Soy coder</option><option value="No">No soy coder</option></select>
+          <button>Calcular</button>
+        </form>
+        <pre class="out" id="o2"></pre>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">03</span> Cuenta regresiva</h2>
+        <p>Escribe un número positivo y cuento hacia atrás hasta 1.</p>
+        <small>Cualquiercosa3.js</small>
+        <form id="f3"><input id="n3" type="number" min="1" step="1" placeholder="Número"><button>Contar</button></form>
+        <pre class="out" id="o3"></pre>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">04</span> Riwi Coder</h2>
+        <p>Múltiplo de 3: "riwi". Múltiplo de 5: "coder". De ambos: "riwi coder".</p>
+        <small>Cualquiercosa4.js</small>
+        <form id="f4"><input id="n4" type="number" min="1" step="1" placeholder="Número"><button>Evaluar</button></form>
+        <pre class="out" id="o4"></pre>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">05</span> Adivina el número</h2>
+        <p>Hay un número secreto entre 1 y 20. Tienes 5 intentos.</p>
+        <small>Cualquiercosa5.js</small>
+        <form id="f5">
+          <input id="n5" type="number" min="1" max="20" step="1" placeholder="Tu intento (1-20)">
+          <button>Probar</button>
+          <button type="button" class="sec" id="reset5">Nuevo juego</button>
+        </form>
+        <pre class="out" id="o5"></pre>
+      </section>
+
+      <section class="card">
+        <h2><span class="num">06</span> Validador de contraseñas</h2>
+        <p>Mínimo 8 caracteres, al menos un número y una mayúscula. No se envía a ningún lado.</p>
+        <small>Cualquiercosa6.js</small>
+        <form id="f6"><input id="pass" type="password" autocomplete="new-password" placeholder="Contraseña"><button>Validar</button></form>
+        <pre class="out" id="o6"></pre>
+      </section>
+    </div>
+
+    <footer>Riwi · Ejercicios de lógica con JavaScript</footer>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const show = (id, text, cls = '') => { const o = $(id); o.textContent = text; o.className = 'out ' + cls; };
+    const on = (id, fn) => $(id).addEventListener('submit', (e) => { e.preventDefault(); fn(); });
+
+    // 01 — Clima
+    on('f1', () => {
+      const v = $('temp').value;
+      const t = Number(v);
+      if (isNaN(t) || v.trim() === '') return show('o1', '❌ Error: El valor ingresado no es un número válido.', 'bad');
+      if (t < 10) show('o1', '🧥 Hace frío, lleva chaqueta');
+      else if (t <= 24) show('o1', '🌤️ Clima templado');
+      else show('o1', '🥵 Hace calor, hidrátate');
+    });
+
+    // 02 — Parqueadero
+    on('f2', () => {
+      const horas = Number($('horas').value);
+      if (!Number.isFinite(horas) || horas < 0 || $('horas').value === '') return show('o2', '❌ Ingresa un número de horas válido.', 'bad');
+      let total = 0;
+      if (horas > 0) total = horas === 1 ? 3000 : 3000 + (horas - 1) * 2000;
+      if (total > 20000) total = 20000;
+      if ($('coder').value === 'Sí') total = total * 0.85;
+      show('o2', `El total a pagar es: $${total.toLocaleString('es-CO')}`, 'ok');
+    });
+
+    // 03 — Cuenta regresiva
+    on('f3', () => {
+      const n = parseInt($('n3').value, 10);
+      if (Number.isNaN(n) || n <= 0) return show('o3', 'Ingresa un número positivo válido.', 'bad');
+      if (n > 1000) return show('o3', 'Usa un número de 1000 o menos para no llenar la pantalla.', 'bad');
+      const lines = [];
+      for (let i = n; i >= 1; i--) lines.push(i);
+      lines.push('¡Cuenta regresiva completa!');
+      show('o3', lines.join('\n'));
+    });
+
+    // 04 — Riwi Coder
+    on('f4', () => {
+      const n = parseInt($('n4').value, 10);
+      if (Number.isNaN(n) || n <= 0) return show('o4', 'Ingresa un número positivo válido.', 'bad');
+      if (n % 3 === 0 && n % 5 === 0) show('o4', 'riwi coder', 'ok');
+      else if (n % 3 === 0) show('o4', 'riwi', 'ok');
+      else if (n % 5 === 0) show('o4', 'coder', 'ok');
+      else show('o4', String(n));
+    });
+
+    // 05 — Adivina el número
+    const MAX = 5;
+    let secreto, intento, terminado, historial;
+    function nuevoJuego() {
+      secreto = Math.floor(Math.random() * 20) + 1;
+      intento = 0; terminado = false;
+      historial = ['Adivina el número secreto entre 1 y 20. Tienes 5 intentos.'];
+      show('o5', historial.join('\n'));
+      $('n5').value = '';
+    }
+    on('f5', () => {
+      if (terminado) return;
+      const n = Number($('n5').value);
+      if (!Number.isInteger(n) || n < 1 || n > 20) return show('o5', historial.concat('Escribe un número entero entre 1 y 20.').join('\n'), 'bad');
+      intento++;
+      if (n === secreto) {
+        historial.push(`Intento ${intento}/${MAX}: ${n} → ¡Ganaste en ${intento} intentos!`);
+        terminado = true;
+        return show('o5', historial.join('\n'), 'ok');
+      }
+      historial.push(`Intento ${intento}/${MAX}: ${n} → El número secreto es ${secreto > n ? 'mayor' : 'menor'}.`);
+      if (intento >= MAX) {
+        historial.push(`Perdiste. El número secreto era ${secreto}.`);
+        terminado = true;
+        return show('o5', historial.join('\n'), 'bad');
+      }
+      show('o5', historial.join('\n'));
+      $('n5').value = '';
+      $('n5').focus();
+    });
+    $('reset5').addEventListener('click', nuevoJuego);
+    nuevoJuego();
+
+    // 06 — Contraseña
+    on('f6', () => {
+      const password = $('pass').value;
+      let numeros = 0, mayusculas = 0;
+      for (const c of password) {
+        if (c >= '0' && c <= '9') numeros++;
+        else if (c >= 'A' && c <= 'Z') mayusculas++;
+      }
+      const errores = [];
+      if (password.length < 8) errores.push('Tener un mínimo de 8 caracteres.');
+      if (numeros < 1) errores.push('Tener al menos un número.');
+      if (mayusculas < 1) errores.push('Tener al menos una letra mayúscula.');
+      if (errores.length === 0) show('o6', '✨ ¡Contraseña segura! ✨', 'ok');
+      else show('o6', '❌ La contraseña NO es segura. No cumple con:\n' + errores.map(e => ' - ' + e).join('\n'), 'bad');
+    });
+  </script>
+</body>
+</html>
